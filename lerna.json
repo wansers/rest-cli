@@ -1,7 +1,9 @@
 {
   "packages": [
-    "packages/*"
+    "commands/*",
+    "core/*",
+    "models/*",
+    "utils/*"
   ],
-  "npmClient": "yarn",
   "version": "1.0.0"
 }

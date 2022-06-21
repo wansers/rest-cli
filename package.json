@@ -1,5 +1,6 @@
 {
   "name": "rest-cli-monorepo",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "lerna": "^5.1.2"
   }
