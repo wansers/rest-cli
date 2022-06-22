@@ -28,10 +28,11 @@
     "url": "https://github.com/wansers/rest-cli/issues"
   },
   "dependencies": {
-    "@rest-cli/format-path": "file:../../utils/format-path",
-    "@rest-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@rest-cli/utils": "file:../../utils/utils",
+    "@rest-cli/format-path": "^1.0.3-alpha.0",
+    "@rest-cli/get-npm-info": "^1.0.3-alpha.0",
+    "@rest-cli/utils": "^1.0.3-alpha.0",
     "npminstall": "^6.3.0",
     "pkg-dir": "^5.0.0"
-  }
+  },
+  "gitHead": "e38b43aea3ff27f4b34b98c411cf37864c1074e2"
 }
