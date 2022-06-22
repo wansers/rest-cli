@@ -1,6 +1,6 @@
 {
   "name": "@rest-cli/package",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "rest-cli package",
   "author": "wanshengqiang <wan624773262@gmail.com>",
   "homepage": "https://github.com/wansers/rest-cli#readme",
@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@rest-cli/format-path": "file:../../utils/format-path",
-    "@rest-cli/utils": "file:../../utils/utils",
     "@rest-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@rest-cli/utils": "file:../../utils/utils",
     "npminstall": "^6.3.0",
     "pkg-dir": "^5.0.0"
   }
