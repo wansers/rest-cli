@@ -1,6 +1,6 @@
 {
   "name": "@rest-cli/log",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.3-alpha.0",
   "description": "rest-cli log",
   "keywords": [
     "log"

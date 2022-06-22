@@ -1,6 +1,6 @@
 {
   "name": "@rest-cli/cli",
-  "version": "1.0.2-alpha.0",
+  "version": "1.0.3-alpha.0",
   "description": "rest-cli's CLI",
   "author": "wanshengqiang <wan624773262@gmail.com>",
   "homepage": "",
@@ -24,10 +24,10 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@rest-cli/exec": "^1.0.1-alpha.0",
-    "@rest-cli/get-npm-info": "^1.0.1-alpha.0",
-    "@rest-cli/init": "^1.0.2-alpha.0",
-    "@rest-cli/log": "^1.0.1-alpha.0",
+    "@rest-cli/exec": "^1.0.3-alpha.0",
+    "@rest-cli/get-npm-info": "^1.0.3-alpha.0",
+    "@rest-cli/init": "^1.0.3-alpha.0",
+    "@rest-cli/log": "^1.0.3-alpha.0",
     "colors": "^1.4.0",
     "commander": "^9.3.0",
     "dotenv": "^16.0.1",

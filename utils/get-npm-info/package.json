@@ -1,6 +1,6 @@
 {
   "name": "@rest-cli/get-npm-info",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.3-alpha.0",
   "description": "git npm info",
   "author": "wanshengqiang <wan624773262@gmail.com>",
   "homepage": "https://github.com/wansers/rest-cli#readme",
