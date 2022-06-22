@@ -2,16 +2,20 @@
 
 module.exports = exec;
 
+const path = require('path');
 const Package = require('@rest-cli/package');
 const log = require('@rest-cli/log');
 
 const SETTINGS = {
-  init: '@rest-cli/init',
+  init: '@imooc-cli-dev/core',
+  // init: '@rest-cli/init',
 };
 
 const CACHE_DIR = 'dependencies/';
 
 function exec() {
+  let pkg;
+  let storeDir;
   let targetPath = process.env.CLI_TARGET_PATH;
   const homePath = process.env.CLI_HOME_PATH;
   log.verbose('targetPath', targetPath);
@@ -21,14 +25,30 @@ function exec() {
   const packageName = SETTINGS[cmdObj.name()];
   const packageVersion = 'latest';
   if (!targetPath) {
-    targetPath = '';
-    const storeDir = '';
-  }
-  const pkg = new Package({
-    targetPath,
-    packageName,
-    packageVersion
-  });
+    targetPath = path.resolve(homePath, CACHE_DIR);
+    storeDir = path.resolve(targetPath, 'node_modules');
+    pkg = new Package({
+      targetPath,
+      storeDir,
+      packageName,
+      packageVersion
+    });
 
-  console.log('+++++++', pkg.getRootFilePath());
+    if (pkg.exists()) {
+      console.log('--------------');
+    } else {
+      console.log('=================');
+      pkg.install();
+    }
+  } else {
+    pkg = new Package({
+      targetPath,
+      storeDir,
+      packageName,
+      packageVersion
+    });
+  }
+
+  const rootFile = pkg.getRootFilePath();
+  require(rootFile).apply(null, arguments);
 }

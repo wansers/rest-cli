@@ -19,7 +19,7 @@ class Package {
   }
 
   exists() {
-
+    return false;
   }
 
   install() {
