@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npm.taobao.org/"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,6 @@
   },
   "bugs": {
     "url": "https://github.com/wansers/rest-cli/issues"
-  }
+  },
+  "gitHead": "c7a8858d645dbe97d330b1497c5a5d0ec9b1c09f"
 }

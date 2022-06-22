@@ -17,16 +17,17 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npm.taobao.org/"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@rest-cli/exec": "file:../exec",
-    "@rest-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@rest-cli/init": "file:../../commands/init",
-    "@rest-cli/log": "file:../../utils/log",
+    "@rest-cli/exec": "^1.0.1-alpha.0",
+    "@rest-cli/get-npm-info": "^1.0.1-alpha.0",
+    "@rest-cli/init": "^1.0.2-alpha.0",
+    "@rest-cli/log": "^1.0.1-alpha.0",
     "colors": "^1.4.0",
     "commander": "^9.3.0",
     "dotenv": "^16.0.1",
@@ -36,5 +37,6 @@
     "root-check": "1.0.0",
     "semver": "^7.3.7",
     "user-home": "^3.0.0"
-  }
+  },
+  "gitHead": "c7a8858d645dbe97d330b1497c5a5d0ec9b1c09f"
 }
