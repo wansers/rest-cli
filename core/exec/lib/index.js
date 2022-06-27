@@ -5,15 +5,15 @@ module.exports = exec;
 const path = require('path');
 const Package = require('@rest-cli/package');
 const log = require('@rest-cli/log');
+const cp = require('child_process');
 
 const SETTINGS = {
-  init: '@imooc-cli-dev/core',
-  // init: '@rest-cli/init',
+  init: '@rest-cli/init',
 };
 
 const CACHE_DIR = 'dependencies/';
 
-function exec() {
+async function exec() {
   let pkg;
   let storeDir;
   let targetPath = process.env.CLI_TARGET_PATH;
@@ -34,21 +34,34 @@ function exec() {
       packageVersion
     });
 
-    if (pkg.exists()) {
-      console.log('--------------');
+    if (await pkg.exists()) {
+      await pkg.update();
     } else {
-      console.log('=================');
-      pkg.install();
+      await pkg.install();
     }
   } else {
     pkg = new Package({
       targetPath,
-      storeDir,
       packageName,
       packageVersion
     });
   }
 
   const rootFile = pkg.getRootFilePath();
-  require(rootFile).apply(null, arguments);
+  if (rootFile) {
+    try {
+      const code = 'console(0)';
+      const child = cp.spawn('noden', ['-e', code], {
+        cwd: process.cwd(),
+        stdio: 'inherit',
+      });
+      child.on('error', (e) => {
+        log.error(e.message)
+        process.exit(1);
+      })
+      // require(rootFile).call(null, Array.from(arguments));
+    } catch (e) {
+      log.error(e.message);
+    }
+  }
 }

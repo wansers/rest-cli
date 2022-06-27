@@ -1,7 +1,7 @@
 {
-  "name": "@rest-cli/init",
+  "name": "@rest-cli/command",
   "version": "1.0.4-alpha.0",
-  "description": "rest-cli init",
+  "description": "> TODO: description",
   "author": "wanshengqiang <wan624773262@gmail.com>",
   "homepage": "https://github.com/wansers/rest-cli#readme",
   "license": "ISC",
@@ -13,12 +13,8 @@
   "files": [
     "lib"
   ],
-  "dependencies": {
-    "@rest-cli/command": "file:../../models/command"
-  },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -30,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/wansers/rest-cli/issues"
   },
-  "gitHead": "e38b43aea3ff27f4b34b98c411cf37864c1074e2"
+  "dependencies": {
+    "@rest-cli/log": "file:../../utils/log",
+    "colors": "^1.4.0",
+    "semver": "^7.3.7"
+  }
 }

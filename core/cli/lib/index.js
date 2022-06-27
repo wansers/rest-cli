@@ -9,7 +9,6 @@ const pathExists = require('path-exists').sync;
 const semver = require('semver');
 const colors = require('colors/safe');
 const log = require("@rest-cli/log");
-const init = require('@rest-cli/init');
 const exec = require('@rest-cli/exec');
 
 const constant = require('./constant');
@@ -28,7 +27,6 @@ async function prepare() {
   try {
     checkRoot();
     checkPkgVersion();
-    checkNodeVersion();
     checkUserHome();
     checkEnv();
     await checkGlobalUpdate();
@@ -109,16 +107,6 @@ function createDefaultConfig() {
 
 function checkPkgVersion() {
   log.notice('rest-cli', pkg.version);
-}
-
-function checkNodeVersion() {
-  // 获取Node版本号
-  const currentVersion = process.version;
-  const lowestVersion = constant.LOWEST_NODE_VERSION;
-  // 比对最低版本号
-  if (!semver.gte(currentVersion, lowestVersion)) {
-    throw new Error(colors.red(`rest-cli need node version > ${lowestVersion}, but get ${currentVersion}`));
-  }
 }
 
 function checkRoot() {

@@ -3,9 +3,10 @@
 'use strict';
 
 const importLocal = require("import-local");
+const log = require("@rest-cli/log")
 
 if (importLocal(__filename)) {
-  require("npmlog").info('cli', 'using local version of rest-cli');
+  log.info('cli', 'using local version of rest-cli');
 } else {
   require("../lib")(process.argv.slice(2));
 }
