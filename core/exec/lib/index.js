@@ -49,19 +49,45 @@ async function exec() {
 
   const rootFile = pkg.getRootFilePath();
   if (rootFile) {
-    try {
-      const code = 'console(0)';
-      const child = cp.spawn('noden', ['-e', code], {
+    try{
+      const args = normalizeArgs(arguments);
+      const code = `require('${rootFile}').call(null, ${JSON.stringify(args)})`;
+      const child = spawn('node', ['-e', code], {
         cwd: process.cwd(),
         stdio: 'inherit',
       });
+      child.on('exit', (e) => {
+        process.exit(0);
+      })
       child.on('error', (e) => {
         log.error(e.message)
         process.exit(1);
       })
-      // require(rootFile).call(null, Array.from(arguments));
     } catch (e) {
       log.error(e.message);
     }
+  }
+
+  function normalizeArgs(args) {
+    const array = Array.from(args);
+    const a = array[array.length - 1];
+    const o = Object.create(null);
+    Object.keys(a).forEach(key => {
+      if (a.hasOwnProperty(key)
+        && !key.startsWith('_')
+        && key !== 'parent'
+      ) {
+        o[key] = a[key];
+      }
+    })
+    array[array.length - 1] = o;
+    return array;
+  }
+
+  function spawn(cmd, args, options) {
+    const win32 = process.platform === 'win32';
+    cmd = win32 ? 'cmd' : cmd;
+    args = win32 ? ['-c'].concat(args) : args;
+    return cp.spawn(cmd, args, options);
   }
 }
