@@ -16,6 +16,9 @@
   "dependencies": {
     "@rest-cli/command": "file:../../models/command",
     "@rest-cli/log": "file:../../utils/log",
+    "@rest-cli/request": "file:../../utils/request",
+    "@rest-cli/utils": "file:../../utils/utils",
+    "@rest-cli/package": "file:../../models/package",
     "inquirer": "^8.2.4",
     "semver": "^7.3.7"
   },

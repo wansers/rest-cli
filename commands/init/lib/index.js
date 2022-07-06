@@ -3,8 +3,13 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const log = require('@rest-cli/log');
+const { spinnerTask } = require('@rest-cli/utils');
 const Command = require('@rest-cli/command');
+const Package = require('@rest-cli/package');
 const semver = require('semver');
+const path = require('path');
+
+const getTemplates = require('./getTemplates');
 
 const TEMPLATE_TYPE_PROJECT = 1;
 const TEMPLATE_TYPE_COMPONENTS = 2;
@@ -18,9 +23,13 @@ class InitCommand extends Command {
 
   async exec() {
     await this.prepare();
+    if (this.template) {
+      await this.downloadTemplate();
+    }
   }
 
   async prepare() {
+    this.template = await spinnerTask('getTemplates', getTemplates);
     const cwd = process.cwd();
     if (!this.isDirEmpty(cwd)) {
       const { isDelete } = await inquirer
@@ -38,6 +47,27 @@ class InitCommand extends Command {
     const projectInfo = await this.getProjectInfo();
     log.verbose('projectName:', projectInfo.projectName);
     log.verbose('projectVersion:', projectInfo.projectVersion);
+  }
+
+  async downloadTemplate() {
+    let storeDir;
+    let targetPath = process.env.CLI_TARGET_PATH;
+    const homePath = process.env.CLI_HOME_PATH;
+    targetPath = path.resolve(homePath, 'template');
+    storeDir = path.resolve(targetPath, 'node_modules');
+
+    const pkg = new Package({
+      packageName: '@rest-cli/init',
+      packageVersion: 'latest',
+      storeDir,
+      targetPath,
+    });
+
+    if (pkg.exists()) {
+      await pkg.update();
+    } else {
+      await pkg.install();
+    }
   }
 
   async getProjectInfo() {
